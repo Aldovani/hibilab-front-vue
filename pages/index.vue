@@ -1,7 +1,5 @@
 <template>
   <h1 class="title">
-    ola
-    <span> mundo </span>
   </h1>
 </template>
 
@@ -9,7 +7,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  layout: 'default',
+  layout: 'Hibilab',
 })
 </script>
 
