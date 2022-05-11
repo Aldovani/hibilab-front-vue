@@ -1,5 +1,6 @@
 <template>
   <h1 class="title">
+    ola mundo
   </h1>
 </template>
 
@@ -10,5 +11,12 @@ export default Vue.extend({
   layout: 'Hibilab',
 })
 </script>
+
+<style lang="scss" scoped>
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;}
+
+</style>
 
 

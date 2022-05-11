@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'HibiLab',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'pt-br',
     },
     meta: [
       { charset: 'utf-8' },
@@ -11,11 +11,11 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["normalize.css/normalize.css"],
+  css: ["normalize.css/normalize.css","@/assets/scss/base.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -28,11 +28,30 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/google-fonts',
+    '@nuxtjs/style-resources',
+
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extractCss: true,
+  },
+  googleFonts: {
+    preload: true,
+    families: {
+      Roboto: true,
+      Inter: true,
+    }
+  },
+  styleResources: {
+    scss: ['@/components/bosons/*.scss'],
+  },
+
+
 }

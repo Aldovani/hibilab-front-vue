@@ -1,0 +1,14 @@
+$colors: (
+  roxo:#6246EA,
+  light: #FFFFFE,
+  dark: #16161A,
+  dark-200: #212529,
+  gray:#C4C4C4,
+
+) !default;
+
+@function color($color) {
+  @if map-has-key($colors, $color) {
+    $type: map-get($colors, $color);
+  }
+}
