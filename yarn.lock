@@ -1462,6 +1462,11 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.6.0.tgz#3c7c9c46e678feefe7a2e5bb609d3dbd665ffb3f"
   integrity sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==
 
+"@stripe/stripe-js@^1.11.0":
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.29.0.tgz#f41e46aee711d1eabcb3bbc77376016a250ec962"
+  integrity sha512-OsUxk0VLlum8E2d6onlEdKuQcvLMs7qTrOXCnl/BGV3fAm65qr6h3e1IZ5AX4lgUlPRrzRcddSOA5DvkKKYLvg==
+
 "@szmarczak/http-timer@^4.0.5":
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/@szmarczak/http-timer/-/http-timer-4.0.6.tgz#b4a914bb62e7c272d4e5989fe4440f812ab1d807"
@@ -6835,6 +6840,13 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
+
+nuxt-stripe-module@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/nuxt-stripe-module/-/nuxt-stripe-module-3.2.0.tgz#440d820285fedebb9e89de041825c806cd418c4a"
+  integrity sha512-Ra9Ve0BfUP6OvJ3o/GUfzwMgSPzhYWp7WPK2WE+T4rgXOx1rbjDx8DH3WRMJNPIRNXziLcdez3EeDPQ7LffQDw==
+  dependencies:
+    "@stripe/stripe-js" "^1.11.0"
 
 nuxt@^2.15.8:
   version "2.15.8"

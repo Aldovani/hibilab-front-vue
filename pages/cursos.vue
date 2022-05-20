@@ -1,12 +1,9 @@
 <template>
-  <div>
-    <IndexTemplate />
-  </div>
+  <CoursesTemplate />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-
 export default Vue.extend({
   layout: 'hibilab',
 })

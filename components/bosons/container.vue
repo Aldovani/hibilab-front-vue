@@ -7,7 +7,7 @@
 <style lang="scss" scoped>
 .container {
   margin: 0 auto;
-  max-width: 1070px;
+  max-width: 1220px;
   @include screen('small') {
     width: 90%;
   }
@@ -15,7 +15,7 @@
     width: 85%;
   }
   @include screen('large', 'infinity') {
-    width: 70%;
+    width: 80%;
   }
 }
 </style>

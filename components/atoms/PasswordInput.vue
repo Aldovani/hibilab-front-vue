@@ -3,6 +3,11 @@
     {{ label }}
     <div>
       <input :id="id" class="input" :placeholder="placeholder" :type="type" />
+
+      <button class="icon" type="button" @click="replaceType">
+        <img v-if="type === 'password'" src="@/assets/img/eye.svg" alt="olho" />
+        <img v-if="type === 'text'" src="@/assets/img/eye-off.svg" alt="olho" />
+      </button>
     </div>
   </label>
 </template>
@@ -11,14 +16,6 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
-    value: {
-      type: [String, Number],
-      default: '',
-    },
-    type: {
-      type: String,
-      default: 'text',
-    },
     label: {
       type: String,
       required: true,
@@ -30,6 +27,21 @@ export default Vue.extend({
     id: {
       type: String,
       required: true,
+    },
+  },
+  data() {
+    return {
+      type: 'password',
+    }
+  },
+
+  methods: {
+    replaceType() {
+      if (this.type === 'password') {
+        this.type = 'text'
+      } else {
+        this.type = 'password'
+      }
     },
   },
 })
@@ -57,10 +69,14 @@ export default Vue.extend({
     font-weight: 300;
     font-size: 18px;
     line-height: 29px;
-    padding: 12px 1rem;
+    padding: 12px 70px 12px 16px;
     border-radius: 8px;
     width: 100%;
-    color: color('dark-200');
+    color: color('dark');
+
+    &::placeholder {
+      color: color('dark-200');
+    }
   }
 
   div {
@@ -72,6 +88,8 @@ export default Vue.extend({
     top: 50%;
     right: 32px;
     transform: translateY(-50%);
+    background: transparent;
+    cursor: pointer;
   }
 }
 </style>
