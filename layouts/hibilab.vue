@@ -12,7 +12,7 @@
 .hiblab {
   .header {
     margin-top: 3rem;
-    margin-bottom: 4rem;
+    margin-bottom: 8rem;
   }
   .footer {
     margin-top: 4rem;

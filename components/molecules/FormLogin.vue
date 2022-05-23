@@ -6,9 +6,12 @@
       type="email"
       placeholder="exemplo@gmail.com"
     />
+
     <PasswordInput id="senha" label="Senha" placeholder="*********" />
-    <NuxtLink to="/">Esqueceu a senha?</NuxtLink>
-    <NuxtLink to="/" class="link-register">Cadastra-se</NuxtLink>
+    <div>
+      <NuxtLink to="/forgot-password">Esqueceu a senha?</NuxtLink>
+      <NuxtLink to="/register" class="link-register">Cadastra-se</NuxtLink>
+    </div>
     <Button text="Entrar" />
   </form>
 </template>
@@ -21,7 +24,6 @@
   grid-template-columns: 1fr;
 
   a {
-    justify-self: end;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 300;
@@ -34,6 +36,10 @@
     justify-self: start;
     font-weight: 500;
     color: color('roxo');
+  }
+  div{
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>

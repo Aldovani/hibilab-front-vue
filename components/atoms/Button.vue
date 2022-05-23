@@ -34,7 +34,7 @@ export default Vue.extend({
   width: 100%;
   padding: 1rem 0;
 
-  .outline {
+  &.outline {
     background-color: transparent;
     color: color('roxo');
     border: 4px solid color('roxo');
