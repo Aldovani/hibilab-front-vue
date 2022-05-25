@@ -1,5 +1,5 @@
 <template>
-  <form class="form-create-course">
+  <form class="form-edit-course">
     <BaseInput
       id="course-name"
       label="Nome do curso"
@@ -34,7 +34,7 @@
 </template>
 
 <style lang="scss" scoped>
-.form-create-course {
+.form-edit-course {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;

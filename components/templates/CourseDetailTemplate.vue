@@ -2,7 +2,7 @@
   <div class="course-detail-template">
     <section class="grid">
       <div>
-        <NavigationSystem name="curso de javascript" />
+        <NavigationSystem text="curso de javascript" />
         <Heading text="Curso javaScript" />
         <h3 class="teacher">Professor</h3>
         <Description />

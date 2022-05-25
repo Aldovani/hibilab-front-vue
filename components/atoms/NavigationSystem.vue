@@ -1,6 +1,6 @@
 <template>
   <span class="navigation-system">
-    <NuxtLink to="/cursos">cursos/</NuxtLink>{{ name }}
+    <NuxtLink to="/cursos">cursos/</NuxtLink>{{ text }}
   </span>
 </template>
 
@@ -8,7 +8,7 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
-    name: {
+    text: {
       type: String,
       required: true,
     },

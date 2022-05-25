@@ -8,7 +8,7 @@
       <span class="quantity">20 videos</span>
     </div>
     <div class="buttons">
-      <button class="button">
+      <button class="button delete">
         <img src="@/assets/img/X.svg" title="Excluir curso" alt="Excluir svg" />
       </button>
 
@@ -22,72 +22,81 @@
 <style lang="scss" scoped>
 .card-course-admin {
   display: grid;
-  grid-template-columns: 380px 1fr auto;
   align-items: center;
   background: color('dark-200');
   border-radius: 4px;
   img {
-    border-radius: 4px 0 0 4px;
+    border-radius: 4px 4px 0 0;
     width: 100%;
     height: 100%;
-    max-width: 380px;
     max-height: 360px;
   }
 }
 
 .content {
   display: grid;
-  gap: 2rem;
-  padding: 0 2rem;
+  /* gap: .5rem; */
+  padding: 1rem 2rem;
 
   h3 {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
+    font-size: 24px;
     line-height: 47px;
+    margin: 0;
 
     letter-spacing: 0.15em;
     text-transform: uppercase;
 
-    color: #ffffff;
+    color: color('light');
   }
   .teacher {
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
+    font-weight: 500;
+    font-size: 18px;
     line-height: 28px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-
-    color: #ffffff;
+    color: color('cinza');
   }
   .quantity {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
+    font-size: 18px;
     line-height: 39px;
-    letter-spacing: 0.15em;
-
-    color: #ffffff;
+    color: color('cinza');
   }
 }
 
 .buttons {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  padding: 0 2rem;
-  align-content: space-around;
+  padding: .5rem  2rem 2rem 2rem;
+  align-content: space-between;
   height: 100%;
+  width: 100%;
 
   .button {
-    background: transparent;
+    background: color('roxo');
     border: none;
+    display: block;
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+    &.delete {
+      background: #e04949;
+    }
   }
 }
 </style>

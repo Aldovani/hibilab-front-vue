@@ -1,19 +1,19 @@
 <template>
-  <div class="course-create-template">
+  <div class="course-edit-template">
     <div class="header">
-      <Heading text="Cadastra curso" />
+      <Heading text="Editar curso" />
       <div>
         <Button text="Nova Aula" outline />
         <Button text="Criar" />
       </div>
     </div>
-    <FormCreteCourse />
+    <FormEditCourse />
     <Classes />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.course-create-template {
+.course-edit-template {
   .header {
     display: flex;
     justify-content: space-between;
@@ -25,7 +25,7 @@
       gap: 1rem;
     }
   }
-  .form-create-course {
+  .form-edit-course {
     margin-bottom: 8rem;
   }
 }

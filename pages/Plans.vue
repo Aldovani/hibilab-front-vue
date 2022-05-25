@@ -1,5 +1,5 @@
 <template>
-  <CourseEditTemplate />
+  <PlansTemplate />
 </template>
 
 <script lang="ts">

@@ -1,9 +1,7 @@
 <template>
   <label :for="id" class="base-input">
     {{ label }}
-    <div>
-      <input :id="id" class="input" :placeholder="placeholder" :type="type" />
-    </div>
+    <input :id="id" class="input" :placeholder="placeholder" :type="type" />
   </label>
 </template>
 
@@ -61,17 +59,6 @@ export default Vue.extend({
     border-radius: 8px;
     width: 100%;
     color: color('dark-200');
-  }
-
-  div {
-    width: 100%;
-    position: relative;
-  }
-  .icon {
-    position: absolute;
-    top: 50%;
-    right: 32px;
-    transform: translateY(-50%);
   }
 }
 </style>
