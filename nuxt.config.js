@@ -13,12 +13,15 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+  server: {
+    host: '0.0.0.0', // default: localhost,
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['normalize.css/normalize.css', '@/assets/scss/base.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['@/plugins/accessor'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [{ path: '@/components', pathPrefix: false }],
@@ -33,19 +36,14 @@ export default {
   modules: [
     '@nuxtjs/google-fonts',
     '@nuxtjs/style-resources',
-    ['nuxt-stripe-module',{
+    '@nuxtjs/axios',
+    ['nuxt-stripe-module', {
       publishableKey:
-      'pk_test_51KVPhhGOxOu9eoh9RAQCNFD6XJ3znfnNdikmrZeO2ermlc7IBnLW5WFm3hhNaDacxOEMf1N4KjctlzrO4YOuwz6r00TR8bXK7b',
+        'pk_test_51KVPhhGOxOu9eoh9RAQCNFD6XJ3znfnNdikmrZeO2ermlc7IBnLW5WFm3hhNaDacxOEMf1N4KjctlzrO4YOuwz6r00TR8bXK7b',
 
     }],
   ],
 
-  // publicRuntimeConfig: {
-  //   stripe: {
-  //     publishableKey:
-  //       'pk_test_51KVPhhGOxOu9eoh9RAQCNFD6XJ3znfnNdikmrZeO2ermlc7IBnLW5WFm3hhNaDacxOEMf1N4KjctlzrO4YOuwz6r00TR8bXK7b',
-  //   },
-  // },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extractCss: true,
@@ -60,4 +58,7 @@ export default {
   styleResources: {
     scss: ['@/components/bosons/*.scss'],
   },
+  axios:{
+    baseURL: 'https://api.hibilab.com.br/api/v1/',
+  }
 }

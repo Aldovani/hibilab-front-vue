@@ -1,26 +1,26 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 
-@Module
-export default class Counter2 extends VuexModule {
-  count = 0
-
-  @Mutation
-  increment(delta: number) {
-    this.count += delta
-  }
-  @Mutation
-  decrement(delta: number) {
-    this.count -= delta
+@Module({ name: 'user', namespaced: true, stateFactory: true })
+export default class User extends VuexModule {
+  private user = {
+    name: '',
+    email: '',
   }
 
-  // action 'incr' commits mutation 'increment' when done with return value as payload
-  @Action({ commit: 'increment' })
-  incr() {
-    return 5
+  // getters return values
+  get $user() {
+    return this.user
   }
-  // action 'decr' commits mutation 'decrement' when done with return value as payload
-  @Action({ commit: 'decrement' })
-  decr() {
-    return 5
+
+  // mutations are functions that change state
+  @Mutation
+  private SETUSER(user: any) {
+    this.user = user
+  }
+
+  // actions are functions that commit mutations
+  @Action
+  public setUser(user: any) {
+    this.SETUSER(user)
   }
 }
