@@ -3,8 +3,9 @@ import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 @Module({ name: 'user', namespaced: true, stateFactory: true })
 export default class User extends VuexModule {
   private user = {
-    name: '',
+    name: 'sas',
     email: '',
+    permission:''
   }
 
   // getters return values
