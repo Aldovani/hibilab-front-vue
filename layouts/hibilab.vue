@@ -10,6 +10,8 @@
 
 <style lang="scss" scoped>
 .hiblab {
+  background-image: url('@/assets/img/bg.png');
+  background-size:80%;
   .header {
     margin-top: 3rem;
     margin-bottom: 8rem;
