@@ -4,17 +4,17 @@
       <img src="@/assets/img/LogoSmall.svg" class="logo" alt="Logo" />
     </NuxtLink>
     <NavBar />
-    <div v-if="userN.length == 0" class="container-buttons">
+    <div v-if="!$user" class="container-buttons">
       <Link text="Entrar" to="/login" />
       <Link :button="true" text="Matricular-se" to="/register" />
     </div>
     <div v-else class="container-action-user" @click="toggleMenu">
       <img src="@/assets/img/avatar.png" alt="" class="avatar" />
-      <div v-show="showMenu" class="menu">
+      <div :class="`menu  ${showMenu ? 'active' : ''}`">
         <Link to="/user/config" class="menu-item" text="Configurações" />
         <Link to="/user/dashboard" class="menu-item" text="Meu aprendizado" />
-        <Link to="/admin" class="menu-item" text="Admin" />
-        <button class="menu-item">Sair</button>
+        <Link v-if="$isAdmin" to="/admin" class="menu-item" text="Admin" />
+        <button class="menu-item" @click="logout">Sair</button>
       </div>
     </div>
   </header>
@@ -22,17 +22,29 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { user } from '@/store'
+import { user, auth } from '@/store'
 export default Vue.extend({
   data() {
     return {
       showMenu: false,
-      userN: user.$user.name,
     }
+  },
+  computed: {
+    $user() {
+      return !!user.$user.name
+    },
+    $isAdmin() {
+      return user.$user.permission === 'admin'
+    },
   },
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu
+    },
+    logout() {
+      auth.destroy()
+      user.update(null)
+      this.$router.push('/')
     },
   },
 })
@@ -77,9 +89,9 @@ export default Vue.extend({
       z-index: 10;
       transition: all 0.3s ease-in-out;
       border: 4px solid color('roxo');
-      /* opacity: 0;
+      opacity: 0;
       visibility: hidden;
-      transform: translateY(-1rem); */
+      transform: translateY(-1rem);
 
       .menu-item {
         font-family: 'Roboto';
@@ -93,8 +105,16 @@ export default Vue.extend({
 
         padding: 32px;
         width: 100%;
+        cursor: pointer;
 
         color: color('light');
+        &:hover {
+          background: color('dark');
+        }
+        &.nuxt-link-exact-active {
+          color: color('roxo');
+          background: color('dark');
+        }
       }
       &.active {
         opacity: 1;

@@ -1,11 +1,20 @@
 <template>
   <p class="description">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit placeat
-    blanditiis adipisci magnam perspiciatis quaerat harum doloribus, possimus
-    vitae, dicta quasi expedita consequatur dignissimos voluptatum! Voluptate
-    veritatis aspernatur exercitationem atque!
+    {{ text }}
   </p>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  props: {
+    text: {
+      type: String,
+      required: true,
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .description {

@@ -1,5 +1,11 @@
 <template>
-  <button :class="`button ${outline ? 'outline' : ''}`">{{ text }}</button>
+  <button
+    :class="`button ${outline ? 'outline' : ''}`"
+    :type="type"
+    @click="$emit('onClick')"
+  >
+    {{ text }}
+  </button>
 </template>
 
 <script lang="ts">
@@ -14,6 +20,10 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      default: 'button',
+    },
   },
 })
 </script>
@@ -27,17 +37,27 @@ export default Vue.extend({
   line-height: 23px;
   text-transform: uppercase;
   color: color('light');
+  cursor: pointer;
 
   background: color('roxo');
   border: none;
   border-radius: 4px;
   width: 100%;
   padding: 1rem 0;
-
+  transition: all 0.3s ease-in;
+  &:hover {
+    opacity: 0.5;
+  }
   &.outline {
     background-color: transparent;
     color: color('roxo');
     border: 4px solid color('roxo');
+
+    &:hover {
+      background: color('roxo');
+      color: color('light');
+      opacity: 1;
+    }
   }
 }
 </style>

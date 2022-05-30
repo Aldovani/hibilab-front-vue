@@ -1,16 +1,10 @@
 <template>
   <div class="course-edit-template">
-    <div class="header">
-      <Heading text="Editar curso" />
-      <div>
-        <Button text="Nova Aula" outline />
-        <Button text="Criar" />
-      </div>
-    </div>
     <FormEditCourse />
     <Classes />
   </div>
 </template>
+
 
 <style lang="scss" scoped>
 .course-edit-template {

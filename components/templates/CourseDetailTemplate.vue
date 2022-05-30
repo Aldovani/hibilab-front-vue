@@ -2,20 +2,32 @@
   <div class="course-detail-template">
     <section class="grid">
       <div>
-        <NavigationSystem text="curso de javascript" />
-        <Heading text="Curso javaScript" />
-        <h3 class="teacher">Professor</h3>
-        <Description />
+        <NavigationSystem :text="$course.name" />
+        <Heading :text="$course.name" />
+        <h3 class="teacher">{{ $course.teacher }}</h3>
+        <Description :text="$course.description" />
       </div>
       <ContentCourse />
-      <Requirements />
+      <Requirements :text="$course.requirements" />
     </section>
     <section class="grid">
-      <CardCourseDetails/>
+      <CardCourseDetails />
       <SimilarCourses />
     </section>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { courses } from '@/store'
+export default Vue.extend({
+  computed: {
+    $course() {
+      return courses.$course
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .course-detail-template {
@@ -27,6 +39,7 @@
   .subtitle {
     justify-self: flex-start;
     margin: 0;
+    
   }
 
   .teacher {

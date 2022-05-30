@@ -1,7 +1,14 @@
 <template>
   <label :for="id" class="base-input">
     {{ label }}
-    <input :id="id" class="input" :placeholder="placeholder" :type="type" />
+    <input
+      :id="id"
+      class="input"
+      :value="value"
+      :placeholder="placeholder"
+      :type="type"
+      @input="updateValue"
+    />
   </label>
 </template>
 
@@ -28,6 +35,11 @@ export default Vue.extend({
     id: {
       type: String,
       required: true,
+    },
+  },
+  methods: {
+    updateValue(event: any) {
+      this.$emit('input', event.target.value)
     },
   },
 })

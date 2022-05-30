@@ -3,21 +3,41 @@
     <img src="https://picsum.photos/400/300" alt="" />
 
     <div class="content">
-      <h3>Título do curso</h3>
-      <span class="teacher">Professo</span>
+      <h3>{{ data.name }}</h3>
+      <span class="teacher">{{ data.teacher }}</span>
       <span class="quantity">20 videos</span>
     </div>
     <div class="buttons">
-      <button class="button delete">
+      <button class="button delete" @click="deleteCourse">
         <img src="@/assets/img/X.svg" title="Excluir curso" alt="Excluir svg" />
       </button>
 
-      <NuxtLink to="/admin/course/dsaa" class="button">
+      <NuxtLink :to="`/admin/course/${data.id}`" class="button">
         <img src="@/assets/img/pen.svg" title="Editar curso" alt="Editar svg" />
       </NuxtLink>
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import Vue, { PropType } from 'vue'
+import { Course } from '@/models'
+import { courses } from '@/store'
+export default Vue.extend({
+  props: {
+    data: {
+      type: Object as PropType<Course>,
+      required: true,
+    },
+  },
+
+  methods: {
+    deleteCourse() {
+      courses.destroy({ id: this.data.id})
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .card-course-admin {
@@ -25,6 +45,7 @@
   align-items: center;
   background: color('dark-200');
   border-radius: 4px;
+  max-width: 480px;
   img {
     border-radius: 4px 4px 0 0;
     width: 100%;
@@ -35,7 +56,7 @@
 
 .content {
   display: grid;
-  /* gap: .5rem; */
+  max-width: 480px;
   padding: 1rem 2rem;
 
   h3 {
@@ -50,6 +71,10 @@
     text-transform: uppercase;
 
     color: color('light');
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .teacher {
     font-family: 'Roboto';
@@ -58,6 +83,10 @@
     font-size: 18px;
     line-height: 28px;
     color: color('cinza');
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .quantity {
     font-family: 'Inter';
@@ -73,7 +102,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  padding: .5rem  2rem 2rem 2rem;
+  padding: 0.5rem 2rem 2rem 2rem;
   align-content: space-between;
   height: 100%;
   width: 100%;

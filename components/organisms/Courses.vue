@@ -1,77 +1,36 @@
 <template>
   <div class="courses">
     <Course
-      to="/cursos/curso-1"
+      v-for="item in $cursos"
+      :key="item.id"
+      :to="`/cursos/${item.id}`"
       :course="{
-        name: 'Curso de sistema',
-        description: 'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ',
-        teacher: 'Professor ',
+        name: item.name,
+        description: item.description,
+        teacher: item.teacher,
         img: 'https://picsum.photos/400/300',
-        difficulty: 'iniciante',
-      }"
-    />
-
-    <Course
-      to="/cursos/curso-1"
-      :course="{
-        name: 'Curso de sistema',
-        description: 'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ',
-        teacher: 'Professor ',
-        img: 'https://picsum.photos/400/300',
-        difficulty: 'avançado',
-      }"
-    />
-
-    <Course
-      to="/cursos/curso-1"
-      :course="{
-        name: 'Curso de sistema',
-        description: 'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem  ',
-        teacher: 'Professor ',
-        img: 'https://picsum.photos/400/300',
-        difficulty: 'intermediário',
-      }"
-    />
-
-    <Course
-      to="/cursos/curso-1"
-      :course="{
-        name: 'Curso de sistema',
-        description: 'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ',
-        teacher: 'Professor ',
-        img: 'https://picsum.photos/400/300',
-        difficulty: 'iniciante',
-      }"
-    />
-
-    <Course
-      to="/cursos/curso-1"
-      :course="{
-        name: 'Curso de sistema',
-        description: 'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ',
-        teacher: 'Professor ',
-        img: 'https://picsum.photos/400/300',
-        difficulty: 'avançado',
-      }"
-    />
-
-    <Course
-      to="/cursos/curso-1"
-      :course="{
-        name: 'Curso de sistema',
-        description: 'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem  ',
-        teacher: 'Professor ',
-        img: 'https://picsum.photos/400/300',
-        difficulty: 'intermediário',
+        difficulty: String(item.difficulty).toLowerCase(),
       }"
     />
   </div>
 </template>
 
+<script lang="ts">
+import Vue from 'vue'
+import { courses } from '@/store'
+export default Vue.extend({
+  computed: {
+    $cursos() {
+      return courses.$courses
+    },
+  },
+})
+</script>
+
 <style lang="scss" scoped>
 .courses {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 380px);
+  grid-template-columns: repeat(auto-fit, 340px);
   justify-content: space-between;
   gap: 2rem 0;
 }

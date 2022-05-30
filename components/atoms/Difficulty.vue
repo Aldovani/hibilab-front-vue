@@ -7,7 +7,7 @@ import Vue, { PropType } from 'vue'
 export default Vue.extend({
   props: {
     difficulty: {
-      type: String as PropType<'iniciante' | 'intermediário' | 'avançado'>,
+      type: String as PropType<'iniciante' | '' | 'avançado'>,
       required: true,
     },
   },

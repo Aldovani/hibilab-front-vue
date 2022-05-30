@@ -5,10 +5,22 @@
       <Button text="Matricular-se" />
 
       <span>Quantidade de aulas: 20</span>
-      <span>Dificuldade: <Difficulty difficulty="iniciante" /></span>
+      <span>Dificuldade: <Difficulty :difficulty="$difficulty" /></span>
     </div>
   </section>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { courses } from '@/store'
+export default Vue.extend({
+  computed: {
+    $difficulty() {
+      return courses.$course.difficulty.toLowerCase()
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .card-course-details {

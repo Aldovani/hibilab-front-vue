@@ -2,18 +2,20 @@
   <div class="login-template">
     <div class="bg">
       <div class="form">
-        <header>
+        <div class="form-header">
           <h1>Entrar</h1>
           <span>Bem vindo de volta</span>
-        </header>
+        </div>
         <FormLogin />
       </div>
     </div>
-    <div>
-      <img src="@/assets/img/Logo.svg" alt="Logo" />
-    </div>
+      <NuxtLink to="/">
+        <img src="@/assets/img/Logo.svg" alt="Logo" />
+      </NuxtLink>
   </div>
 </template>
+
+
 
 <style lang="scss" scoped>
 .login-template {
@@ -62,7 +64,7 @@
     margin: 0 auto;
     gap: 80px;
     justify-items: center;
-    header {
+    .form-header {
       justify-self: flex-start;
     }
   }

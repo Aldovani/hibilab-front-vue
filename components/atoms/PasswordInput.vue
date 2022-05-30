@@ -2,7 +2,14 @@
   <label :for="id" class="base-input">
     {{ label }}
     <div>
-      <input :id="id" class="input" :placeholder="placeholder" :type="type" />
+      <input
+        :id="id"
+        class="input"
+        :placeholder="placeholder"
+        :type="type"
+        :value="value"
+        @input="updateValue"
+      />
 
       <button class="icon" type="button" @click="replaceType">
         <img v-if="type === 'password'" src="@/assets/img/eye.svg" alt="olho" />
@@ -28,6 +35,10 @@ export default Vue.extend({
       type: String,
       required: true,
     },
+    value: {
+      type: [String, Number],
+      default: '',
+    },
   },
   data() {
     return {
@@ -42,6 +53,9 @@ export default Vue.extend({
       } else {
         this.type = 'password'
       }
+    },
+    updateValue(event: any) {
+      this.$emit('input', event.target.value)
     },
   },
 })

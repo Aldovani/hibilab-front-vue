@@ -1,7 +1,9 @@
 <template>
   <div class="register-template">
     <div>
-      <img src="@/assets/img/Logo.svg" alt="Logo" />
+      <NuxtLink to="/">
+        <img src="@/assets/img/Logo.svg" alt="Logo" />
+      </NuxtLink>
     </div>
     <div class="bg">
       <div class="form">

@@ -2,7 +2,7 @@
   <div class="user-config-template">
     <Heading text="Configurações" />
     <FormConfigUser />
-    <ChangeAvatar/>
+    <ChangeAvatar />
   </div>
 </template>
 

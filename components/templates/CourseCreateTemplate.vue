@@ -1,12 +1,5 @@
 <template>
   <div class="course-create-template">
-    <div class="header">
-      <Heading text="Cadastra curso" />
-      <div>
-        <Button text="Nova Aula" outline />
-        <Button text="Criar" />
-      </div>
-    </div>
     <FormCreteCourse />
     <Classes />
   </div>
@@ -14,17 +7,6 @@
 
 <style lang="scss" scoped>
 .course-create-template {
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
-    div {
-      flex: 0.5;
-      display: flex;
-      gap: 1rem;
-    }
-  }
   .form-create-course {
     margin-bottom: 8rem;
   }

@@ -1,9 +1,5 @@
 <template>
-  <dir class="course-finished">
-    <CardCourse />
-    <CardCourse />
-    <CardCourse />
-  </dir>
+  <section class="course-finished"></section>
 </template>
 
 <style lang="scss" scoped>

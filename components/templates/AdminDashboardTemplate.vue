@@ -5,24 +5,46 @@
       <Link text="Novo curso" button to="/admin/course/create" />
     </div>
     <div class="container-grid">
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
-      <CardCourseAdmin />
+      <CardCourseAdmin
+        v-for="course in $courses"
+        :key="course.id"
+        :data="course"
+      />
     </div>
+    <Button
+      v-if="page < $lastPage"
+      text="Carregar mais"
+      @onClick="moreCourses"
+    />
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { courses } from '@/store'
+export default Vue.extend({
+  data() {
+    return {
+      page: 1,
+      cursos: [],
+    }
+  },
+  computed: {
+    $courses() {
+      return courses.$courses
+    },
+    $lastPage() {
+      return courses.$pagination.last_page
+    },
+  },
+  methods: {
+    moreCourses() {
+      courses.index(this.page)
+      this.page++
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .admin-dashboard-template {
@@ -41,6 +63,5 @@
     grid-gap: 2rem;
     margin-bottom: 5rem;
   }
-
 }
 </style>

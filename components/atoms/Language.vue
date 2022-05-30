@@ -37,6 +37,10 @@ export default Vue.extend({
   letter-spacing: 0.15em;
   text-transform: uppercase;
 
-  color: #ffffff;
+  color: color('light');
+  transition: filter 0.2s ease-in;
+  &:hover {
+    filter: brightness(0.6);
+  }
 }
 </style>

@@ -14,6 +14,7 @@
 <style lang="scss" scoped>
 .dashboard-user-template {
   display: grid;
+  min-height: 100vh;
   grid-template-columns: 1fr;
   gap: 2rem;
   .subtitle {

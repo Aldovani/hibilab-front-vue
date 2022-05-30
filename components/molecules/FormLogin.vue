@@ -1,20 +1,52 @@
 <template>
-  <form class="form-login">
+  <form class="form-login" @submit.prevent="onSubmit">
     <BaseInput
       id="email"
+      v-model="email"
       label="Email"
       type="email"
       placeholder="exemplo@gmail.com"
     />
 
-    <PasswordInput id="senha" label="Senha" placeholder="*********" />
+    <PasswordInput
+      id="senha"
+      v-model="password"
+      label="Senha"
+      placeholder="*********"
+    />
     <div>
       <NuxtLink to="/forgot-password">Esqueceu a senha?</NuxtLink>
       <NuxtLink to="/register" class="link-register">Cadastra-se</NuxtLink>
     </div>
-    <Button text="Entrar" />
+    <Button type="submit" text="Entrar" />
   </form>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { auth, user } from '@/store'
+export default Vue.extend({
+  data() {
+    return {
+      email: '',
+      password: '',
+    }
+  },
+  methods: {
+    async onSubmit() {
+      const { email, password } = this
+      console.log(email, password)
+      try {
+        await auth.create({ email, password })
+        await user.show()
+        this.$router.push('/')
+      } catch (error) {
+        console.error('error')
+      }
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .form-login {
@@ -37,7 +69,7 @@
     font-weight: 500;
     color: color('roxo');
   }
-  div{
+  div {
     display: flex;
     justify-content: space-between;
   }

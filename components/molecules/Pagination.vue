@@ -1,14 +1,45 @@
 <template>
   <div class="pagination">
     <ul>
-      <li>1</li>
-      <li class="active">2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
+      <li
+        :class="`${$pagination.current_page == 1 ? 'active' : ''}`"
+        @click="changePage(1)"
+      >
+        1
+      </li>
+      
+      <li
+        v-show="$pagination.last_page != 1"
+        :class="`${$pagination.current_page == $pagination.last_page  ? 'active' : ''}`"
+        @click="changePage($pagination.last_page)"
+      >
+        {{ $pagination.last_page }}
+      </li>
     </ul>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { courses } from '@/store'
+export default Vue.extend({
+  data() {
+    return {
+      currentPage: 1,
+    }
+  },
+  computed: {
+    $pagination() {
+      return courses.$pagination
+    },
+  },
+  methods: {
+    async changePage(page: number) {
+      await courses.index(page)
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .pagination {

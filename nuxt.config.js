@@ -21,7 +21,7 @@ export default {
   css: ['normalize.css/normalize.css', '@/assets/scss/base.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['@/plugins/accessor'],
+  plugins: ['@/plugins/accessor', '@/plugins/axios'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [{ path: '@/components', pathPrefix: false }],
@@ -37,6 +37,7 @@ export default {
     '@nuxtjs/google-fonts',
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
     ['nuxt-stripe-module', {
       publishableKey:
         'pk_test_51KVPhhGOxOu9eoh9RAQCNFD6XJ3znfnNdikmrZeO2ermlc7IBnLW5WFm3hhNaDacxOEMf1N4KjctlzrO4YOuwz6r00TR8bXK7b',
@@ -58,7 +59,7 @@ export default {
   styleResources: {
     scss: ['@/components/bosons/*.scss'],
   },
-  axios:{
-    baseURL: 'https://api.hibilab.com.br/api/v1/',
+  axios: {
+    baseURL: 'http://127.0.0.1:3333',
   }
 }

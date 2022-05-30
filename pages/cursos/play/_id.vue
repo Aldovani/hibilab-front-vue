@@ -1,10 +1,11 @@
 <template>
-  <CoursePlayTemplate/>
+  <CoursePlayTemplate />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  layout: 'hibilab'
+  layout: 'hibilab',
+  middleware: 'subscribe',
 })
 </script>

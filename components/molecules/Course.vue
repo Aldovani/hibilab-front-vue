@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="to" class="course">
+  <!-- <NuxtLink :to="to" class="course">
     <div class="course-image">
       <img :src="course.img" :alt="course.name" />
     </div>
@@ -7,6 +7,14 @@
       <h3>{{ course.name }}</h3>
       <span>{{ course.teacher }}</span>
       <p>{{ course.description }}</p>
+    </div>
+    <Difficulty :difficulty="course.difficulty" />
+  </NuxtLink> -->
+  <NuxtLink :to="to" class="course">
+    <img :src="course.img" :alt="course.name" />
+    <div class="course-info">
+      <h3>{{ course.name }}</h3>
+      <span>{{ course.teacher }}</span>
     </div>
     <Difficulty :difficulty="course.difficulty" />
   </NuxtLink>
@@ -31,6 +39,77 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.course {
+  width: 340px;
+  height: 430px;
+  position: relative;
+  border-radius: 4px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 4px;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 97.59%);
+  }
+
+  &:hover {
+    &::after {
+      opacity: 0.5;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  .course-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    padding: 0 1rem 2.5rem 1rem;
+    width: 100%;
+
+    h3,
+    span {
+      width: 100%;
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+
+      font-family: 'Roboto';
+      font-style: normal;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: 21px;
+      line-height: 25px;
+      color: #ffffff;
+    }
+    span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+
+      color: color('cinza');
+    }
+  }
+  .difficulty {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+/*
 .course {
   display: grid;
   grid-template-columns: 380px;
@@ -106,11 +185,10 @@ export default Vue.extend({
     font-weight: 400;
     font-size: 18px;
     line-height: 150%;
-    /* or 27px */
 
     text-transform: uppercase;
 
     color: #6c6c6c;
   }
-}
+} */
 </style>

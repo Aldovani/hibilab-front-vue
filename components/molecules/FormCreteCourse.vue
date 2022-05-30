@@ -1,45 +1,104 @@
 <template>
-  <form class="form-create-course">
+  <form class="form-create-course" @submit.prevent="onSubmit">
+    <div class="header">
+      <Heading text="Cadastra curso" />
+      <div>
+        <Button text="Nova Aula" outline />
+        <Button text="Criar" type="submit" />
+      </div>
+    </div>
     <BaseInput
       id="course-name"
+      v-model="course.name"
       label="Nome do curso"
       placeholder="Digite o nome do curso"
     />
     <BaseInput
       id="teacher-name"
+      v-model="course.teacher"
       label="Nome do professor"
       placeholder="Digite o nome do professor"
     />
     <label for="Dificuldade" class="selection">
       Dificuldade
-      <select id="Dificuldade">
-        <option value="iniciante">iniciante</option>
-        <option value="iniciante">iniciante</option>
-        <option value="iniciante">iniciante</option>
+      <select id="Dificuldade" v-model="course.difficulty">
+        <option value="Iniciante">iniciante</option>
+        <option value="Intermediário">Intermediário</option>
+        <option value="Avançado">Avançado</option>
       </select>
     </label>
     <label for="description" class="textarea">
       Descrição
-      <textarea id="description" placeholder="Descrição"></textarea>
+      <textarea
+        id="description"
+        v-model="course.description"
+        placeholder="Descrição"
+      ></textarea>
     </label>
     <label for="required" class="textarea">
       Requisitos
-      <textarea id="required" placeholder="Requisitos"></textarea>
+      <textarea
+        id="required"
+        v-model="course.requirements"
+        placeholder="Requisitos"
+      ></textarea>
     </label>
-    <label for="file" class="input-file">
+    <label v-if="$disabled" for="file" class="input-file">
       Carregar imagem
       <input id="file" type="file" value="Carregar imagem" />
     </label>
   </form>
 </template>
 
+<script lang="ts">
+import Vue from 'vue'
+import { courses } from '@/store'
+import { Course as Courses } from '@/models'
+export default Vue.extend({
+  data() {
+    return {
+      course: {} as Courses,
+    }
+  },
+  computed: {
+    $disabled() {
+      return !!this.course.id
+    },
+  },
+  methods: {
+    async onSubmit() {
+      try {
+        await courses.create(this.course)
+        this.course = { ...courses.$course }
+      } catch (e) {
+        console.log(e)
+      }
+    },
+  },
+})
+</script>
+
 <style lang="scss" scoped>
 .form-create-course {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  .base-input[for='course-name'] {
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
     grid-area: 1 / 1 / 2 / 3;
+    div {
+      flex: 0.5;
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .base-input[for='course-name'] {
+    grid-area: 2 / 1 / 3 / 3;
   }
   .selection {
     display: flex;
@@ -86,7 +145,6 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 38px;
-    /* identical to box height */
 
     text-align: center;
     letter-spacing: 0.15em;

@@ -5,9 +5,19 @@
       <h1>Ops! Página não encontrada</h1>
       <p>A página que você está tentando acessar não existe ou foi removida.</p>
     </div>
-    <Link to="/"  text="Voltar para a página inicial" button />
+    <Link to="/" text="Voltar para a página inicial" button />
   </Container>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  props: ['error'],
+  created() {
+    console.log(this.$props.error)
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .error {

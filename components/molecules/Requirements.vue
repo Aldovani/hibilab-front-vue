@@ -3,20 +3,22 @@
     <SubTitle text="Requisitos" />
 
     <ul>
-      <li>
-        Curso para iniciantes: você aprenderá do zero como desenvolver
-        aplicações para Android; não é necessário ter conhecimento prévio de
-        programação.
-      </li>
-      <li>Computador com acesso à internet.</li>
-      <li>Nenhum software pago é necessário.</li>
-      <li>
-        Android Studio 2.1 ou inferior Mínimo de 3GB de memória e Processador
-        superior ao I3
-      </li>
+      <li v-for="(item, index) in $requirements" :key="index">{{ item }}</li>
     </ul>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { courses } from '@/store'
+export default Vue.extend({
+  computed: {
+    $requirements() {
+      return courses.$course.requirements.split('\n')
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .requirements {

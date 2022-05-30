@@ -10,9 +10,9 @@
     </div>
     <div class="container-description">
       <SubTitle text="Descrição" />
-      <Description />
+      <!-- <Description /> -->
     </div>
-    <Requirements />
+    <!-- <Requirements /> -->
   </div>
 </template>
 
