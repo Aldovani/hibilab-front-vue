@@ -11,12 +11,16 @@
     <Difficulty :difficulty="course.difficulty" />
   </NuxtLink> -->
   <NuxtLink :to="to" class="course">
-    <img :src="course.img" :alt="course.name" />
+    <!-- <img :src="'https://picsum.photos/400/300'" :alt="course.name" /> -->
+    <img :src="'https://picsum.photos/400/300'" />
     <div class="course-info">
-      <h3>{{ course.name }}</h3>
-      <span>{{ course.teacher }}</span>
+      <!-- <h3>{{ course.name }}</h3> -->
+      <h3>sadasda</h3>
+      <!-- <span>{{ course.teacher }}</span> -->
+      <span>sadas</span>
     </div>
-    <Difficulty :difficulty="course.difficulty" />
+    <!-- <Difficulty :difficulty="course.difficulty" /> -->
+    <Difficulty difficulty="iniciante" />
   </NuxtLink>
 </template>
 
@@ -30,10 +34,10 @@ export default Vue.extend({
       required: true,
     },
 
-    course: {
-      type: Object as PropType<Course>,
-      required: true,
-    },
+    // course: {
+    //   type: Object as PropType<Course>,
+    //   required: true,
+    // },
   },
 })
 </script>
@@ -52,7 +56,7 @@ export default Vue.extend({
     inset: 0;
     width: 100%;
     height: 100%;
-    transition: .5s;
+    transition: 0.5s;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 97.59%);
   }
 
