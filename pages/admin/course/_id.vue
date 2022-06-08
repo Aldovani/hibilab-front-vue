@@ -9,8 +9,8 @@ export default Vue.extend({
   layout: 'hibilab',
   middleware: 'admin',
   asyncData({ params }) {
-    return courseSearch.show(params.id)
-    
+    return courseSearch.show(Number(params.id))
+
   },
 })
 </script>
