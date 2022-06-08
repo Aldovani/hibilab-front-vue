@@ -83,7 +83,7 @@ export default Vue.extend({
         description: this.course.description,
         requirements: this.course.requirements,
       })
-      await courseSearch.show(String(this.course.id))
+      await courseSearch.show(this.course.id)
 
       this.course = { ...courseSearch.$course }
     },
