@@ -33,7 +33,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/google-fonts',
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
