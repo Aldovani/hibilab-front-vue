@@ -31,7 +31,7 @@ export default Vue.extend({
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 28px;
   text-align: center;
   letter-spacing: 0.15em;

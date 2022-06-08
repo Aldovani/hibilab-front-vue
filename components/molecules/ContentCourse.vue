@@ -1,17 +1,25 @@
 <template>
   <section class="content-course">
     <SubTitle text="Conteúdo do curso" />
-
     <ul>
-      <li>Aula 01 - Historia</li>
-      <li>Aula 02 - Historia</li>
-      <li>Aula 03 - Historia</li>
-      <li>Aula 04 - Historia</li>
-      <li>Aula 05 - Historia</li>
-      <li>Aula 06 - Historia</li>
+      <li v-for="(item, index) in $classes" :key="item.id">
+        Aula {{ String(index + 1).padStart(2, '0') }} - {{ item.name }}
+      </li>
     </ul>
   </section>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { courseSearch } from '@/store'
+export default Vue.extend({
+  computed: {
+    $classes() {
+      return courseSearch.$course?.classes
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .content-course {

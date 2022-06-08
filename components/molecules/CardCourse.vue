@@ -1,13 +1,37 @@
 <template>
-  <NuxtLink to="/" class="card-course">
-    <img src="https://picsum.photos/400/300" alt="" />
+  <NuxtLink :to="`/cursos/play/${course.id}`" class="card-course">
+    <img
+      :src="`${
+        course.thumbnail
+          ? course.thumbnail.url
+          : 'https://via.placeholder.com/350'
+      }`"
+      alt=""
+    />
+
     <div class="content">
-      <h2>Nome do curso</h2>
-      <span>Professor</span>
-      <ProgressBar progress="10" />
+      <h2>{{ course.name }}</h2>
+      <span>{{ course.teacher }}</span>
+      <ProgressBar
+        :length="Number(course.classes.length)"
+        :count="Number(course.watched)"
+      />
     </div>
   </NuxtLink>
 </template>
+
+<script lang="ts">
+import Vue, { PropType } from 'vue'
+import { Course } from '@/models'
+export default Vue.extend({
+  props: {
+    course: {
+      type: Object as PropType<Course>,
+      required: true,
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .card-course {
@@ -15,7 +39,7 @@
   color: color('light');
   border-radius: 4px;
 
-  img{
+  img {
     width: 100%;
     height: 300px;
     max-width: 380px;

@@ -8,7 +8,9 @@
         name: item.name,
         description: item.description,
         teacher: item.teacher,
-        img: 'https://picsum.photos/400/300',
+        img: item.thumbnail
+          ? item.thumbnail.url
+          : 'https://via.placeholder.com/350',
         difficulty: String(item.difficulty).toLowerCase(),
       }"
     />
@@ -17,11 +19,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { courses } from '@/store'
+import { courseSearch } from '@/store'
 export default Vue.extend({
   computed: {
     $cursos() {
-      return courses.$courses
+      return courseSearch.$courses
     },
   },
 })
@@ -30,8 +32,8 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .courses {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 340px);
+  grid-template-columns: repeat(3, minmax(340px, 1fr));
   justify-content: space-between;
-  gap: 2rem 0;
+  gap: 2rem;
 }
 </style>

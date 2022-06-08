@@ -1,14 +1,10 @@
 <template>
   <div class="languages">
     <transition-group mode="out-in" name="fade" class="grid">
-      <Language
-        v-for="(item) in languages"
-        :key="item"
-        :language="item"
-      />
+      <Language v-for="item in languages" :key="item" :language="item" />
 
       <Language
-        v-for="(item) in moreLanguages"
+        v-for="item in moreLanguages"
         v-show="showMoreLanguage"
         :key="item"
         :language="item"
@@ -64,7 +60,7 @@ export default Vue.extend({
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
     gap: 16px;
   }
   .show-more-languages {

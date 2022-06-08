@@ -4,12 +4,12 @@
       <img src="@/assets/img/LogoSmall.svg" class="logo" alt="Logo" />
     </NuxtLink>
     <NavBar />
-    <div v-if="!$user" class="container-buttons">
+    <div v-if="!$hasUser" class="container-buttons">
       <Link text="Entrar" to="/login" />
       <Link :button="true" text="Matricular-se" to="/register" />
     </div>
     <div v-else class="container-action-user" @click="toggleMenu">
-      <img src="@/assets/img/avatar.png" alt="" class="avatar" />
+      <img :src="$avatar" alt="" class="avatar" />
       <div :class="`menu  ${showMenu ? 'active' : ''}`">
         <Link to="/user/config" class="menu-item" text="Configurações" />
         <Link to="/user/dashboard" class="menu-item" text="Meu aprendizado" />
@@ -31,10 +31,16 @@ export default Vue.extend({
   },
   computed: {
     $user() {
+      return user.$user
+    },
+    $hasUser() {
       return !!user.$user.name
     },
     $isAdmin() {
       return user.$user.permission === 'admin'
+    },
+    $avatar() {
+      return user.$avatar
     },
   },
   methods: {
@@ -66,6 +72,13 @@ export default Vue.extend({
   }
   .container-action-user {
     position: relative;
+    cursor: pointer;
+
+    &:hover {
+      .avatar {
+        filter: brightness(0.9);
+      }
+    }
 
     .avatar {
       width: 70px;
@@ -74,6 +87,7 @@ export default Vue.extend({
       background: color('roxo');
       padding: 3px;
       margin-right: 1rem;
+      transition: all 0.5;
     }
     .menu {
       position: absolute;
@@ -82,7 +96,7 @@ export default Vue.extend({
       background: color('dark-200');
       border-radius: 8px;
       display: flex;
-      width: 400px;
+      width: max-content;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -97,13 +111,13 @@ export default Vue.extend({
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 400;
-        font-size: 24px;
-        line-height: 28px;
+        font-size: 18px;
+        /* line-height: 28px; */
         background: color('dark-200');
         text-transform: uppercase;
         text-align: left;
 
-        padding: 32px;
+        padding: 1rem;
         width: 100%;
         cursor: pointer;
 

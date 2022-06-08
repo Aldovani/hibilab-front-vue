@@ -5,7 +5,7 @@ export default interface User {
   avatar: {
     url: string
   }
-  stripeCustomers: {
+  subscription: {
     status: 'active' | 'inactive'
   }
 }

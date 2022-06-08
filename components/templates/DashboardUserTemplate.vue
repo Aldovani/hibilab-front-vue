@@ -2,14 +2,45 @@
   <div class="dashboard-user-template">
     <section>
       <SubTitle text="Meu aprendizado" />
-      <CoursesInProgress />
+      <div class="course-in-progress">
+        <CardCourse
+          v-for="item in $coursesInProgress"
+          :key="item.id"
+          :course="item"
+        />
+      </div>
     </section>
     <section>
       <SubTitle text="Finalizados" />
-      <CoursesFinished />
+      <div class="course-finished">
+        <CardCourse
+          v-for="item in $coursesFinished"
+          :key="item.id"
+          :course="item"
+        />
+      </div>
     </section>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { user } from '@/store'
+export default Vue.extend({
+  computed: {
+    $coursesInProgress() {
+      return user.$courses.filter(
+        (course) => course.classes.length !== course.watched
+      )
+    },
+    $coursesFinished() {
+      return user.$courses.filter(
+        (course) => course.classes.length === course.watched
+      )
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .dashboard-user-template {
@@ -21,6 +52,11 @@
     justify-self: flex-start;
     margin-bottom: 1rem;
   }
-
+  .course-finished,
+  .course-in-progress {
+    display: grid;
+    grid-template-columns: repeat(3, 380px);
+    justify-content: space-between;
+  }
 }
 </style>

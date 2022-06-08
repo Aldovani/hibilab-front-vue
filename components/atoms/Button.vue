@@ -2,6 +2,7 @@
   <button
     :class="`button ${outline ? 'outline' : ''}`"
     :type="type"
+    :disabled="disabled"
     @click="$emit('onClick')"
   >
     {{ text }}
@@ -24,6 +25,10 @@ export default Vue.extend({
       type: String,
       default: 'button',
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
 })
 </script>
@@ -45,6 +50,7 @@ export default Vue.extend({
   width: 100%;
   padding: 1rem 0;
   transition: all 0.3s ease-in;
+
   &:hover {
     opacity: 0.5;
   }
@@ -57,6 +63,16 @@ export default Vue.extend({
       background: color('roxo');
       color: color('light');
       opacity: 1;
+    }
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background: transparent;
+      opacity: 0.5;
+      color: color('roxo');
     }
   }
 }

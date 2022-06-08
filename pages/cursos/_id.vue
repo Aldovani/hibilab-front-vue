@@ -4,11 +4,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { courses } from '@/store'
+import { courseSearch } from '@/store'
 export default Vue.extend({
   layout: 'hibilab',
-  async asyncData({route}) {
-    await courses.show(route.params.id)
+  async asyncData({ params }) {
+    await courseSearch.show(Number(params.id))
   },
 })
 </script>

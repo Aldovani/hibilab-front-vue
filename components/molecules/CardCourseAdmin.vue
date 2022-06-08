@@ -1,11 +1,15 @@
 <template>
   <div class="card-course-admin">
-    <img src="https://picsum.photos/400/300" alt="" />
+    <img
+      :src="`${
+        data.thumbnail ? data.thumbnail.url : 'https://via.placeholder.com/350'
+      }`"
+      alt=""
+    />
 
     <div class="content">
-      <h3>{{ data.name }}</h3>
+      <h3 :title="data.name">{{ data.name }}</h3>
       <span class="teacher">{{ data.teacher }}</span>
-      <span class="quantity">20 videos</span>
     </div>
     <div class="buttons">
       <button class="button delete" @click="deleteCourse">
@@ -22,7 +26,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 import { Course } from '@/models'
-import { courses } from '@/store'
+import { modalCourseDelete } from '@/store'
 export default Vue.extend({
   props: {
     data: {
@@ -33,7 +37,8 @@ export default Vue.extend({
 
   methods: {
     deleteCourse() {
-      courses.destroy({ id: this.data.id})
+      modalCourseDelete.setStateModal(true)
+      modalCourseDelete.setCourseId(this.data.id)
     },
   },
 })
@@ -45,12 +50,12 @@ export default Vue.extend({
   align-items: center;
   background: color('dark-200');
   border-radius: 4px;
-  max-width: 480px;
+  max-width: 350px;
   img {
     border-radius: 4px 4px 0 0;
     width: 100%;
     height: 100%;
-    max-height: 360px;
+    max-height: 400px;
   }
 }
 
@@ -88,14 +93,6 @@ export default Vue.extend({
     overflow: hidden;
     white-space: nowrap;
   }
-  .quantity {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 39px;
-    color: color('cinza');
-  }
 }
 
 .buttons {
@@ -113,15 +110,15 @@ export default Vue.extend({
     display: block;
     cursor: pointer;
     width: 100%;
-    height: 70px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 4px;
 
     img {
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
     }
     &.delete {
       background: #e04949;

@@ -3,8 +3,21 @@
     <Heading text="Configurações" />
     <FormConfigUser />
     <ChangeAvatar />
+    <ModalAvatar v-show="$stateAvatar" />
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { modalAvatar } from '@/store'
+export default Vue.extend({
+  computed: {
+    $stateAvatar() {
+      return modalAvatar.$stateModal
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .user-config-template {

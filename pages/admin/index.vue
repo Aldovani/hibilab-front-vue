@@ -4,12 +4,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { courses } from '@/store'
+import { courseSearch } from '@/store'
 export default Vue.extend({
   layout: 'hibilab',
   middleware: 'admin',
   async asyncData() {
-    return await courses.index()
+    return await courseSearch.index()
   },
 })
 </script>

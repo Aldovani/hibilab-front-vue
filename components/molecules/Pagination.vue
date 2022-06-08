@@ -7,7 +7,7 @@
       >
         1
       </li>
-      
+
       <li
         v-show="$pagination.last_page != 1"
         :class="`${$pagination.current_page == $pagination.last_page  ? 'active' : ''}`"
@@ -21,21 +21,21 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { courses } from '@/store'
+import { courseSearch } from '@/store'
 export default Vue.extend({
   data() {
     return {
-      currentPage: 1,
+      currentPage: courseSearch.$pagination.current_page,
     }
   },
   computed: {
     $pagination() {
-      return courses.$pagination
+      return courseSearch.$pagination
     },
   },
   methods: {
     async changePage(page: number) {
-      await courses.index(page)
+      await courseSearch.index(page)
     },
   },
 })

@@ -3,26 +3,26 @@
     <div class="header">
       <Heading text="Cadastra curso" />
       <div>
-        <Button text="Nova Aula" outline />
-        <Button text="Criar" type="submit" />
+        <Button text="Nova Aula" :disabled="true" outline />
+        <Button :text="`${$disabled ? 'Atualizar' : 'Criar'}`" type="submit" />
       </div>
     </div>
     <BaseInput
       id="course-name"
       v-model="course.name"
       label="Nome do curso"
-      placeholder="Digite o nome do curso"
+      placeholder="Ex: Desenvolvimento de aplicações para web"
     />
     <BaseInput
       id="teacher-name"
       v-model="course.teacher"
       label="Nome do professor"
-      placeholder="Digite o nome do professor"
+      placeholder="Ex: Iruil da silva"
     />
     <label for="Dificuldade" class="selection">
       Dificuldade
       <select id="Dificuldade" v-model="course.difficulty">
-        <option value="Iniciante">iniciante</option>
+        <option value="Iniciante" selected>iniciante</option>
         <option value="Intermediário">Intermediário</option>
         <option value="Avançado">Avançado</option>
       </select>
@@ -32,7 +32,7 @@
       <textarea
         id="description"
         v-model="course.description"
-        placeholder="Descrição"
+        placeholder="Ex: O curso irá ensinar o desenvolvimento de aplicações para web"
       ></textarea>
     </label>
     <label for="required" class="textarea">
@@ -40,36 +40,47 @@
       <textarea
         id="required"
         v-model="course.requirements"
-        placeholder="Requisitos"
+        placeholder="Ex: O aluno deve ter conhecimento em algum framework ou linguagem de programação"
       ></textarea>
     </label>
-    <label v-if="$disabled" for="file" class="input-file">
+    <label :data-disable="true" for="file" class="input-file">
       Carregar imagem
-      <input id="file" type="file" value="Carregar imagem" />
+      <input id="file" :disabled="true" type="file" value="Carregar imagem" />
     </label>
   </form>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { courses } from '@/store'
+import { courseRegister } from '@/store'
 import { Course as Courses } from '@/models'
 export default Vue.extend({
   data() {
     return {
-      course: {} as Courses,
+      course: { difficulty: 'iniciante' } as Courses,
     }
-  },
-  computed: {
-    $disabled() {
-      return !!this.course.id
-    },
   },
   methods: {
     async onSubmit() {
       try {
-        await courses.create(this.course)
-        this.course = { ...courses.$course }
+        if (
+          !this.course.name &&
+          !this.course.teacher &&
+          !this.course.difficulty &&
+          !this.course.description &&
+          !this.course.requirements
+        ) {
+          this.$notify({
+            title: 'Erro',
+            text: 'Preencha todos os campos',
+            type: 'error',
+          })
+          return
+        }
+
+        await courseRegister.create(this.course)
+        this.course = { ...courseRegister.$course }
+        this.$router.push(`/admin/course/${this.course.id}`)
       } catch (e) {
         console.log(e)
       }
@@ -90,7 +101,7 @@ export default Vue.extend({
     align-items: center;
     flex: 1;
     grid-area: 1 / 1 / 2 / 3;
-    div {
+    > div {
       flex: 0.5;
       display: flex;
       gap: 1rem;
@@ -109,12 +120,19 @@ export default Vue.extend({
     line-height: 29px;
     position: relative;
     color: color('light');
+
     font-family: 'Inter';
     gap: 0.5rem;
+
     select {
+      color: color('dark');
       height: 100%;
       border-radius: 8px;
       padding: 12px 16px;
+
+      &:focus {
+        outline: 4px solid color('roxo');
+      }
     }
   }
 
@@ -150,6 +168,10 @@ export default Vue.extend({
     letter-spacing: 0.15em;
     padding: 13px 23px;
     border-radius: 8px;
+    &[data-disable='true'] {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
     input {
       display: none;
     }

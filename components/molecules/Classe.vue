@@ -1,14 +1,44 @@
 <template>
   <li class="classe">
-    <span>Aula historia</span>
+    <span>{{ classe.name }}</span>
     <div>
-      <button><img src="@/assets/img/pen.svg" alt="Editar" /></button>
-      <button>
+      <button @click="edit">
+        <img src="@/assets/img/pen.svg" alt="Editar" />
+      </button>
+      <button @click="deleteClasse">
         <img src="@/assets/img/X.svg" alt="Excluir" />
       </button>
     </div>
   </li>
 </template>
+
+<script lang="ts">
+import Vue, { PropType } from 'vue'
+import { modalClasseDelete, modalClasseEdit } from '@/store'
+interface Props {
+  id: number
+  name: string
+}
+
+export default Vue.extend({
+  props: {
+    classe: {
+      type: Object as PropType<Props>,
+      required: true,
+    },
+  },
+  methods: {
+    edit() {
+      modalClasseEdit.setClasse(this.classe.id)
+      modalClasseEdit.setStateModal(true)
+    },
+    deleteClasse() {
+      modalClasseDelete.setStateModal(true)
+      modalClasseDelete.setClasseId(this.classe.id)
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .classe {

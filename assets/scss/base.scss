@@ -124,3 +124,25 @@ $t-delay: 300ms;
     transform-origin: right;
   }
 }
+
+.notifications{
+  font-family: 'Roboto';
+  font-size: 1rem;
+  color: color('light');
+  border-radius: 0.3rem;
+  padding: 1rem 3rem;
+  overflow: visible;
+  width: max-content;
+  margin: 2rem auto 0;
+  cursor: pointer;
+
+  &.success{
+    background-color:#4eca7a;
+  }
+  &.error{
+    background-color: #df484a;
+  }
+  &.warning{
+    background-color: #ffa83f;
+  }
+}

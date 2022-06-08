@@ -5,18 +5,20 @@
         <header>
           <h1>Defina sua senha</h1>
         </header>
-        <form class="form">
+        <form class="form" @submit.prevent="submit">
           <password-input
             id="senha"
+            v-model="password"
             label="Senha"
             placeholder="********"
           />
           <password-input
             id="confirmar-senha"
+            v-model="confirmPassword"
             label="Confirmar senha"
             placeholder="********"
           />
-          <Button text="Redefinir" />
+          <Button type="submit" text="Redefinir" />
         </form>
       </div>
     </div>
@@ -25,6 +27,33 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  data() {
+    return {
+      password: '',
+      confirmPassword: '',
+    }
+  },
+  methods: {
+    async submit() {
+      try {
+        const key = this.$route.params.key
+        await this.$axios.$put('/user/forgotpassword', {
+          password: this.password,
+          passwordConfirmation: this.confirmPassword,
+          key,
+        })
+        this.$router.push('/')
+      } catch (e) {
+        console.error(e)
+      }
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .forgot-password-template {

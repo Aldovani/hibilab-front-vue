@@ -3,8 +3,8 @@
     <div class="header">
       <Heading text="Editar curso" />
       <div>
-        <Button text="Nova Aula" outline />
-        <Button type="submit" text="Criar" />
+        <Button text="Nova Aula" outline @onClick="openModalClasse" />
+        <Button type="submit" text="Salvar" />
       </div>
     </div>
     <BaseInput
@@ -43,26 +43,39 @@
         placeholder="Requisitos"
       ></textarea>
     </label>
-    <label for="file" class="input-file">
+    <button for="file" class="input-file" @click="openModal">
       Carregar imagem
-      <input id="file" type="file" value="Carregar imagem" />
-    </label>
+    </button>
+    <modal-thumbnail v-if="$modalState" />
   </form>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { courses } from '@/store'
+import {
+  courseSearch,
+  courseUpdate,
+  courseThumbnail,
+  modalClasseRegister,
+} from '@/store'
 export default Vue.extend({
   data() {
     return {
-      course: { ...courses.$course },
+      course: { ...courseSearch.$course },
     }
   },
+  computed: {
+    $modalState() {
+      return courseThumbnail.$modalState
+    },
+  },
 
+  created() {
+    courseUpdate.update(courseSearch.$course)
+  },
   methods: {
     async onSubmit() {
-      await courses.update({
+      await courseUpdate.update({
         id: this.course.id,
         name: this.course.name,
         teacher: this.course.teacher,
@@ -70,7 +83,16 @@ export default Vue.extend({
         description: this.course.description,
         requirements: this.course.requirements,
       })
-      this.course = { ...courses.$course }
+      await courseSearch.show(String(this.course.id))
+
+      this.course = { ...courseSearch.$course }
+    },
+
+    openModal() {
+      courseThumbnail.setStateModal(true)
+    },
+    openModalClasse() {
+      modalClasseRegister.setStateModal(true)
     },
   },
 })
@@ -142,7 +164,6 @@ export default Vue.extend({
     font-weight: 600;
     font-size: 24px;
     line-height: 38px;
-    /* identical to box height */
 
     text-align: center;
     letter-spacing: 0.15em;

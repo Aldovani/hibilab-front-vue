@@ -2,9 +2,33 @@
   <div class="course-edit-template">
     <FormEditCourse />
     <Classes />
+    <ModalClasseCreate v-if="registerModal" />
+    <ModalClasseDelete v-if="deleteModal" />
+    <ModalClasseEdit v-if="editModal" />
   </div>
 </template>
 
+<script lang="ts">
+import Vue from 'vue'
+import {
+  modalClasseEdit,
+  modalClasseDelete,
+  modalClasseRegister,
+} from '@/store'
+export default Vue.extend({
+  computed: {
+    editModal() {
+      return modalClasseEdit.$stateModal
+    },
+    deleteModal() {
+      return modalClasseDelete.$stateModal
+    },
+    registerModal() {
+      return modalClasseRegister.$stateModal
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .course-edit-template {

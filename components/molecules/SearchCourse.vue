@@ -15,8 +15,8 @@
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    font-size: 28px;
-    line-height: 42px;
+    font-size: 20px;
+    line-height: 150%;
     letter-spacing: 0.15em;
     border-radius: 8px 0 0 8px;
 
@@ -27,6 +27,10 @@
     border-radius: 0 8px 8px 0;
     padding: 0 64px;
     background: color('roxo');
+    img {
+      width: 32px;
+      height: 32px;
+    }
   }
 }
 </style>

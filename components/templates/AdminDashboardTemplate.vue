@@ -16,30 +16,33 @@
       text="Carregar mais"
       @onClick="moreCourses"
     />
+    <ModalCourseDelete v-show="$modalState" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { courses } from '@/store'
+import { courseSearch, modalCourseDelete } from '@/store'
 export default Vue.extend({
   data() {
     return {
       page: 1,
-      cursos: [],
     }
   },
   computed: {
     $courses() {
-      return courses.$courses
+      return courseSearch.$courses
     },
     $lastPage() {
-      return courses.$pagination.last_page
+      return courseSearch.$pagination.last_page
+    },
+    $modalState() {
+      return modalCourseDelete.$stateModal
     },
   },
   methods: {
     moreCourses() {
-      courses.index(this.page)
+      courseSearch.index(this.page)
       this.page++
     },
   },
@@ -54,12 +57,13 @@ export default Vue.extend({
     align-items: center;
     margin-bottom: 5rem;
   }
-  .link {
+  .link.button {
     width: max-content;
+    justify-self: flex-end;
   }
   .container-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     grid-gap: 2rem;
     margin-bottom: 5rem;
   }

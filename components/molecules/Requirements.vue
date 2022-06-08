@@ -10,11 +10,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { courses } from '@/store'
+import { courseSearch } from '@/store'
 export default Vue.extend({
   computed: {
     $requirements() {
-      return courses.$course.requirements.split('\n')
+      return courseSearch.$course.requirements?.split('\n')
     },
   },
 })

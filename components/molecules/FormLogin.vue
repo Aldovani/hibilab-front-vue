@@ -35,13 +35,21 @@ export default Vue.extend({
   methods: {
     async onSubmit() {
       const { email, password } = this
-      console.log(email, password)
       try {
         await auth.create({ email, password })
         await user.show()
+        this.$notify({
+          title: 'Sucesso',
+          text: 'Login realizado com sucesso',
+          type: 'success',
+        })
         this.$router.push('/')
       } catch (error) {
-        console.error('error')
+        this.$notify({
+          title: 'Erro',
+          text: 'Login ou senha incorretos',
+          type: 'error',
+        })
       }
     },
   },

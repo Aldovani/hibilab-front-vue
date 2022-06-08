@@ -8,6 +8,7 @@
         :placeholder="placeholder"
         :type="type"
         :value="value"
+        required
         @input="updateValue"
       />
 
@@ -87,6 +88,10 @@ export default Vue.extend({
     border-radius: 8px;
     width: 100%;
     color: color('dark');
+
+    &:focus {
+      outline: 4px solid color('roxo');
+    }
 
     &::placeholder {
       color: color('dark-200');

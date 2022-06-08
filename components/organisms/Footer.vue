@@ -25,7 +25,7 @@
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 19px;
     letter-spacing: 0.15em;
     text-transform: uppercase;

@@ -6,14 +6,15 @@
           <h1>Esqueceu a senha</h1>
           <span>Redefina sua senha</span>
         </header>
-        <form class="form">
+        <form class="form" @submit.prevent="forgotPassword">
           <BaseInput
             id="email"
+            v-model="email"
             label="E-mail"
             type="email"
             placeholder="exemplo@gmail.com"
           />
-          <Button text="Redefinir" />
+          <Button type="submit" text="Redefinir" />
         </form>
       </div>
     </div>
@@ -22,6 +23,31 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  data() {
+    return {
+      email: '',
+    }
+  },
+
+  methods: {
+    async forgotPassword() {
+      try {
+        await this.$axios.$post('/user/forgotpassword', {
+          email: this.email,
+          redirectUrl:'http://localhost:3000/forgot-password',
+        })
+        this.$router.push('/')
+      } catch (e) {
+        console.error(e)
+      }
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .forgot-password-template {

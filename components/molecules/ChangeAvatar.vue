@@ -1,22 +1,43 @@
 <template>
-  <div class="change-avatar">
-    <img src="@/assets/img/avatar.png" alt="avatar" class="image" />
+  <div class="change-avatar" @click="open">
+    <img :src="avatar" alt="avatar" class="image" />
     <span>Trocar imagem</span>
   </div>
 </template>
 
+<script lang="ts">
+import Vue from 'vue'
+import { modalAvatar, user } from '@/store'
+export default Vue.extend({
+  data() {
+    return {
+      avatar: user.$avatar,
+    }
+  },
+  methods: {
+    open() {
+      modalAvatar.toggleStateModal()
+    },
+  },
+})
+</script>
+
 <style lang="scss" scoped>
 .change-avatar {
-  width: 380px;
+  cursor: pointer;
+  width: 350px;
   border-radius: 50%;
+  height: 350px;
   position: relative;
   .image {
     border-radius: 50%;
-    width: 100%;
+    width: 350px;
+    height: 350px;
   }
   &::before,
   &::after {
-    width: 380px;
+    width: 350px;
+    height: 350px;
     border-radius: 50%;
     height: 100%;
     content: '';

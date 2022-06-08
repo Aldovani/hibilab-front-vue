@@ -12,13 +12,7 @@
       label="Email"
       placeholder="aldovaniHcosta@gmai.com"
     />
-    <!-- <PasswordInput
-      id="password"
-      v-model="user.password"
-      label="Senha"
-      value=""
-      placeholder="*******"
-    /> -->
+
     <Button type="submit" text="Salvar" />
   </form>
 </template>
@@ -34,11 +28,35 @@ export default Vue.extend({
   },
   methods: {
     async onSubmit() {
-      console.log(this.userData)
-      await user.update({
-        name: this.userData.name,
-        email: this.userData.email,
-      })
+      try {
+        if (this.userData.name === '' || this.userData.email === '') {
+          this.$notify({
+            title: 'Erro',
+            text: 'Preencha todos os campos',
+            type: 'error',
+          })
+          return
+        }
+
+        await user.update({
+          name: this.userData.name,
+          email: this.userData.email,
+        })
+
+        this.$notify({
+          title: 'Alteração salva',
+          text: 'Alterações salvas com sucesso',
+          type: 'success',
+        })
+      } catch (e) {
+        console.log(e)
+
+        this.$notify({
+          title: 'Erro',
+          text: 'Não foi possível salvar as alterações',
+          type: 'error',
+        })
+      }
     },
   },
 })

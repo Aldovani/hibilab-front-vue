@@ -1,9 +1,9 @@
 <template>
   <div class="progress-bar">
     <dir class="container-progress-bar">
-      <div class="progress-bar-fill" :style="`width:${progress}%;`"></div>
+      <div class="progress-bar-fill" :style="`width:${$progress}%;`"></div>
     </dir>
-    <span> {{ progress }}% </span>
+    <span> {{ $progress }}% </span>
   </div>
 </template>
 
@@ -11,9 +11,19 @@
 import Vue from 'vue'
 export default Vue.extend({
   props: {
-    progress: {
-      type: String,
+    length: {
+      type: Number,
       required: true,
+    },
+    count: {
+      type: Number,
+      required: true,
+    },
+  },
+  computed: {
+    $progress() {
+      if(this.length === 0) return 0
+      return Math.round((this.count / this.length) * 100)
     },
   },
 })
@@ -32,7 +42,6 @@ export default Vue.extend({
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-
   }
 }
 .container-progress-bar {

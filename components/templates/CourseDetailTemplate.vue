@@ -19,11 +19,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { courses } from '@/store'
+import { courseSearch } from '@/store'
 export default Vue.extend({
   computed: {
     $course() {
-      return courses.$course
+      return courseSearch.$course
     },
   },
 })
@@ -39,7 +39,7 @@ export default Vue.extend({
   .subtitle {
     justify-self: flex-start;
     margin: 0;
-    
+
   }
 
   .teacher {

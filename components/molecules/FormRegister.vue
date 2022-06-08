@@ -30,7 +30,7 @@
       <NuxtLink to="/login">Login</NuxtLink>
     </span>
 
-    <Button type="submit" text="Continuar" />
+    <Button type="submit" text="Criar" />
   </form>
 </template>
 
@@ -49,10 +49,9 @@ export default Vue.extend({
   methods: {
     async onSubmit() {
       const { email, name, password, passwordConfirmation } = this
-      alert('aquii')
       try {
         await user.create({ email, name, password, passwordConfirmation })
-        this.$router.push('/login')
+        this.$router.push('/plans')
       } catch (error) {
         console.error(error)
       }

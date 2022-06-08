@@ -20,7 +20,8 @@
       "@nuxt/types",
       "@types/node",
       "nuxt-stripe-module",
-      "@nuxtjs/axios"
+      "@nuxtjs/axios",
+      "vue-notification"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
