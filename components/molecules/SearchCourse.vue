@@ -1,9 +1,31 @@
 <template>
   <form class="search-course">
-    <input type="text" class="search-input" placeholder="Pesquisar curso" />
+    <input
+      v-model="text"
+      type="text"
+      class="search-input"
+      placeholder="Pesquisar curso"
+    />
     <button type="submit"><img src="@/assets/img/search.svg" alt="" /></button>
   </form>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { courseSearch } from '@/store'
+export default Vue.extend({
+  data() {
+    return {
+      text: '',
+    }
+  },
+  methods: {
+    onSubmit() {
+      courseSearch.search(this.text)
+    },
+  },
+})
+</script>
 
 <style lang="scss" scoped>
 .search-course {

@@ -60,4 +60,11 @@ export default class Courses extends VuexModule {
     const data = await $axios.$get(`/course/${id}`)
     this.context.commit('UPDATE_COURSE', data)
   }
+
+  @Action
+  public async search(text: string) {
+    const data = await $axios.$get(`/course/?name=${text}`)
+
+    this.context.commit('UPDATE_COURSE', data)
+  }
 }
